@@ -16,7 +16,7 @@ rows = HEIGHT // CELL_SIZE
 
 # Initialize grids
 grid_mosquitos = [[0 for _ in range(cols)] for _ in range(rows)]
-grid_values = [[random.choice([0, 1, 0.5, 0.5, 0.2, 0.2, 0.2]) for _ in range(cols)] for _ in range(rows)]
+grid_values = [[random.choice([0, 1, 0.5, 0.5, 0, 0, 0.2]) for _ in range(cols)] for _ in range(rows)]
 
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -27,7 +27,7 @@ moviment_factor = 0.40
 moviment_dev = 0.10
 direction_dev = 0.10
 death_factor = 20
-reproduction_factor = 100
+reproduction_factor = 50
 eggs_Quantity = 100
 max_mosquito_count = 1000
 
@@ -54,9 +54,9 @@ def draw_grid_mosquitos():
                 blue = min(255, (127 - grid_mosquitos[y][x]) * 2)
             pygame.draw.rect(screen, (255, green, blue), rect)
 
-            if grid_values[y][x] == 1:
-                pygame.draw.line(screen, (0,0,255),(x * CELL_SIZE,y * CELL_SIZE),((x + 1) * CELL_SIZE,(y + 1) * CELL_SIZE))
-                pygame.draw.line(screen, (0,0,255),((x + 1) * CELL_SIZE,y * CELL_SIZE),(x * CELL_SIZE,(y + 1) * CELL_SIZE))
+            if grid_values[y][x] > 0:
+                pygame.draw.line(screen, (255 - grid_values[y][x] * 255,255 - grid_values[y][x] * 255,255),(x * CELL_SIZE,y * CELL_SIZE),((x + 1) * CELL_SIZE,(y + 1) * CELL_SIZE),2)
+                pygame.draw.line(screen, (255 - grid_values[y][x] * 255,255 - grid_values[y][x] * 255,255),((x + 1) * CELL_SIZE,y * CELL_SIZE),(x * CELL_SIZE,(y + 1) * CELL_SIZE),2)
 
 # Function to move the mosquitos
 def move_grid_mosquitos():
