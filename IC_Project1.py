@@ -8,7 +8,7 @@ pygame.init()
 
 # Screen dimensions
 WIDTH, HEIGHT = 800, 800
-CELL_SIZE = 20
+CELL_SIZE = 10
 
 # Calculate grid size
 cols = WIDTH // CELL_SIZE
@@ -137,7 +137,7 @@ while running:
             raise ValueError("Invalid values detected in grid!")
 
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(10)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
